@@ -6,7 +6,6 @@ OUTPUT_FILE = "docs/AUTO_DOCS.md"
 
 def read_source_code():
     code_blocks = []
-
     for root, _, files in os.walk(SRC_DIR):
         for file in files:
             if file.endswith(".py"):
@@ -14,7 +13,6 @@ def read_source_code():
                 with open(path, "r", encoding="utf-8") as f:
                     code = f.read()
                 code_blocks.append((path, code))
-
     return code_blocks
 
 
@@ -54,6 +52,7 @@ if __name__ == "__main__":
     documentation = generate_documentation(code_blocks)
     write_docs(documentation)
     print("✅ Documentation generated successfully")
+
 
 
 
