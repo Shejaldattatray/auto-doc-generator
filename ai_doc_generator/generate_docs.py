@@ -18,7 +18,8 @@ def read_source_code():
 
 def generate_documentation(code_blocks):
     genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("models/gemini-1.5-flash")
+
 
     docs = ["# 📘 Auto Generated Documentation\n"]
 
