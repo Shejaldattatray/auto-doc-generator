@@ -5,9 +5,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-genai.configure(
-    api_key=os.getenv("GEMINI_API_KEY")
-)
+api_key = os.getenv("GEMINI_API_KEY")
+
+print("API KEY FOUND:", bool(api_key))
+
+if not api_key:
+    raise ValueError("GEMINI_API_KEY not found!")
+
+genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel(
     "gemini-2.5-flash"
