@@ -7,7 +7,6 @@ load_dotenv()
 
 api_key = os.getenv("GEMINI_API_KEY")
 
-print("API KEY FOUND:", bool(api_key))
 
 if not api_key:
     raise ValueError("GEMINI_API_KEY not found!")
