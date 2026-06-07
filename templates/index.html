@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DocuMind AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">DocuMind AI</div>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Docs</a>
+            <a href="#">About</a>
+        </div>
+
+        <button class="login-btn">Login</button>
+    </nav>
+
+    <section class="hero">
+
+        <h1>Build Better Documentation with AI</h1>
+
+        <p>
+            Generate documentation, code reviews,
+            architecture insights and repository summaries
+            in seconds.
+        </p>
+
+        <button class="hero-btn">
+            Analyze Repository
+        </button>
+
+    </section>
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <h2>10+</h2>
+            <p>Languages</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>AI</h2>
+            <p>Powered</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>GitHub</h2>
+            <p>Integrated</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>CI/CD</h2>
+            <p>Ready</p>
+        </div>
+
+    </section>
+
+    <section class="upload-section">
+
+        <div class="upload-card">
+
+            <h2>Analyze Your Software Project</h2>
+
+            <p>
+                Upload source files or paste a GitHub repository URL.
+            </p>
+
+            <form action="/analyze" method="POST">
+
+                <div class="repo-input">
+
+                    <input
+                        type="text"
+                        name="repo_url"
+                        placeholder="Paste GitHub Repository URL"
+                        required>
+
+                </div>
+
+                <div class="action-buttons">
+
+                    <button type="submit">
+                        Generate Documentation
+                    </button>
+
+                    <button
+                         type="submit"
+                         formaction="/review">
+                          AI Code Review
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <section class="features">
+
+        <div class="feature-card">
+            <h3>📄 Documentation</h3>
+            <p>Generate professional markdown documentation.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🤖 AI Code Review</h3>
+            <p>Identify bugs and improvement opportunities.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📘 README Builder</h3>
+            <p>Create complete project documentation.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🔍 Repo Analysis</h3>
+            <p>Analyze complete software repositories.</p>
+        </div>
+
+    </section>
+
+   {% if message %}
+
+<section id="dashboard">
+
+    <div class="dashboard-card">
+
+        <div class="dashboard-header">
+
+            <h2>Repository Analysis Dashboard</h2>
+
+            <span class="status-badge">
+                Analysis Complete
+            </span>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="dashboard-box">
+
+                <h3>Repository Status</h3>
+
+                <p>{{ message }}</p>
+                <p>{{ status }}</p>
+
+            </div>
+
+            <div class="dashboard-box">
+
+                <h3>Files Detected</h3>
+
+                <h1>{{ files|length }}</h1>
+
+            </div>
+
+        </div>
+
+        <div class="files-section">
+
+            <h3>Detected Python Files</h3>
+
+            <ul>
+
+                {% for file in files %}
+
+                <li>✓ {{ file }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+        {% if documentation %}
+
+         <div class="documentation-section">
+
+          <h3>📄 Generated Documentation</h3>
+
+         <div class="documentation-box">
+
+          <pre>{{ documentation }}</pre>
+
+         </div>
+
+     </div>
+
+{% endif %}
+        {% if review %}
+
+     <div class="documentation-section">
+
+       <h3>🤖 AI Code Review</h3>
+
+     <div class="documentation-box">
+
+        <pre>{{ review }}</pre>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+    </div>
+
+</section>
+
+<script>
+
+document.getElementById("dashboard")
+.scrollIntoView({
+    behavior: "smooth"
+});
+
+</script>
+
+{% endif %}
+    <footer>
+        <p>© 2026 DocuMind AI • AI Documentation & Code Intelligence Platform</p>
+    </footer>
+
+</body>
+</html>
